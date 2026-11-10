@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+        <title>Islas de Totora</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="imagenes/lago-titicaca.png" alt="Barco de Totora" class="barcoLogo">
+                <img src="imagenes/ISLAS DE TOTORA.png" alt="" class="tituloLogo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="irAInicio(); return false;" class="active">Inicio</a></li>
+                    <li><a href="#" onclick="abrirPeces(); return false;">Peces</a></li>
+                    <li class="dropdown">
+                        <a href="#">Las islas</a>
+                        <ul class="submenu">
+                            <li><a href="#" onclick="irATarjeta(1); return false;">Casas flotantes</a></li>
+                            <li><a href="#" onclick="irATarjeta(2); return false;">Barcos de totora</a></li>
+                            <li><a href="#" onclick="irATarjeta(6); return false;">La totora</a></li>
+                            <li><a href="#" onclick="irATarjeta(3); return false;">Mirador</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Artesanías</a>
+                        <ul class="submenu">
+                            <li><a href="#" onclick="irATarjeta(4); return false;">Pez de totora</a></li>
+                            <li><a href="#" onclick="irATarjeta(7); return false;">Flamenco de totora</a></li>
+                            <li><a href="#" onclick="irATarjeta(5); return false;">El arco</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" onclick="abrirUbicacion(); return false;">Ubicación</a></li>
+                </ul>
+            </nav>
+        </header>
+            <div class="info2 panel-flotante" id="inicioInfo">
+            <h1>ISLAS DE TOTORA</h1>
+            <p>Navega entre islas flotantes y descubre cómo un pueblo aprendió a vivir sobre el agua</p>
+            <button class="boton_explorar" onclick="alternarNavegacion()">Explora las islas flotantes</button>
+        </div>
+
+        <div class="info panel-flotante" id="panelInfo" style="display:none;">
+            <button class="cerrarInfo" onclick="cerrarTarjeta()">✕</button>
+            <h1 id="tituloInfo"></h1>
+            <img id="imagenInfo" src="" alt="" class="imagenInfo">
+            <a id="imagenFuenteInfo" class="imagenFuenteInfo" target="_blank" rel="noopener"></a>
+            <p id="textoInfo"></p>
+            <p class="fuenteInfo">Fuente: <a id="fuenteLink" target="_blank" rel="noopener"></a></p>
+        </div>
+
+        <div class="contador" id="contador" style="display:none;">Descubiertos: 0 de 8</div>
+        <div id="iconos"></div>
+
+        <div class="botonesAmbiente">
+            <button class="boton_explorar" onclick="cambiarAmbiente('dia')">☀️ Día</button>
+            <button class="boton_explorar" onclick="cambiarAmbiente('atardecer')">🌅 Atardecer</button>
+            <button class="boton_explorar" onclick="cambiarAmbiente('noche')">🌙 Noche</button>
+            <button class="boton_explorar" onclick="cambiarAmbiente('nublado')">☁️ Nublado</button>
+            <button class="boton_explorar" onclick="alternarNavegacion()" id="btnNavegar">⛵ Navegar</button>
+            <div class="ayudaGiro" id="ayudaNavegar" style="display:none;">
+                <div class="ayudaFila"><kbd>W</kbd> <kbd>↑</kbd> Avanzar</div>
+                <div class="ayudaFila"><kbd>S</kbd> <kbd>↓</kbd> Retroceder</div>
+                <div class="ayudaFila"><kbd>A</kbd> <kbd>←</kbd> Girar izquierda</div>
+                <div class="ayudaFila"><kbd>D</kbd> <kbd>→</kbd> Girar derecha</div>
+                <div class="ayudaFila"><kbd>E</kbd> Ver información / cerrar</div>
+            </div>
+        </div>
+
+        <div id="modalPeces" class="modalPeces" style="display:none;">
+            <div class="modalCaja">
+                <button class="cerrarModal" onclick="cerrarPeces()">✕</button>
+                <div class="modalVisor" id="visorPeces"></div>
+                <div class="modalTexto">
+                    <h1>Peces del Lago Titicaca</h1>
+                    <img src="imagenes/trucha.jpg" alt="Trucha del lago Titicaca" class="imagenInfo">
+                    <a class="imagenFuenteInfo" href="https://plus.vet/category/aquaculture/" target="_blank" rel="noopener">Imagen: PlusVet</a>
+                    <p>El lago Titicaca alberga diversas especies de peces. Entre las más conocidas se encuentran el carachi, el ispi, el suche y el mauri, que son especies nativas de la región y han vivido en sus aguas durante miles de años.</p>
+                    <p>También hay especies introducidas, como la trucha arcoíris (<i>Oncorhynchus mykiss</i>) y el pejerrey (<i>Odontesthes</i>), que tienen importancia para la pesca y la alimentación de las comunidades cercanas al lago.</p>
+                    <p>El carachi es un pez pequeño y muy común, que los Uros capturan desde hace mucho tiempo. El ispi es aún más pequeño y se pesca en grandes cantidades. El suche y el mauri son peces más grandes y apreciados, aunque hoy son menos abundantes.</p>
+                    <p>La trucha se ha vuelto muy popular porque su carne es sabrosa y se vende bien en los mercados de la zona. Sin embargo, su presencia ha afectado a algunas especies nativas, que tienen que competir con ella por el alimento.</p>
+                    <p>Para los Uros, la pesca es una de las actividades más importantes. En cada isla viven entre cinco y siete familias que se mantienen de lo que pescan y cazan.</p>
+                    <p class="fuenteInfo">Fuente: <a href="https://blog.felicesvacaciones.es/que-hacen-los-uros" target="_blank" rel="noopener">Felices Vacaciones</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalUbicacion" class="modalPeces" style="display:none;">
+            <div class="modalCaja">
+                <button class="cerrarModal" onclick="cerrarUbicacion()">✕</button>
+                <div class="modalTexto modalUbi">
+                    <h1>Ubicación Geográfica</h1>
+                    <p class="subUbi">Comunidades Uro en el Lago Titicaca</p>
+                    <ul class="lista-datos">
+                        <li><strong>Altitud</strong><span>3,810 m s. n. m.</span></li>
+                        <li><strong>Localización</strong><span>Lago Titicaca, frontera Bolivia – Perú</span></li>
+                        <li><strong>Acceso</strong><span>Vía marítima (embarcaciones desde Puno o Copacabana)</span></li>
+                        <li><strong>Turismo</strong><span>Patrimonio cultural y atractivo del altiplano</span></li>
+                    </ul>
+                </div>
+                <div class="modalMapa">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20391.379451983074!2d-69.98190133326318!3d-15.815451850485804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915d6925d95d8e6b%3A0xaf7b64a7d17ec812!2sIsla%20Peque%C3%B1a%20Isla%20de%20la%20Totora!5e1!3m2!1ses!2sbo!4v1782261950393!5m2!1ses!2sbo"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="pantallaCarga">
+            <div class="spinnerCarga"></div>
+            <h2>ISLAS DE TOTORA</h2>
+            <p id="porcentajeCarga">Cargando... 0%</p>
+        </div>
+
+        <div id="contenedor3D"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/objects/Water.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/MaskPass.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/OutlinePass.js"></script>
+        <script src="ambiente.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
